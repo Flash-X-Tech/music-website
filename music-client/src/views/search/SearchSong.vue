@@ -18,13 +18,13 @@ export default defineComponent({
     const { proxy } = getCurrentInstance();
     const store = useStore();
 
-    const currentSongList = ref([]); // 存放的音乐
+    const currentSongList = ref([]); 
     const searchWord = computed(() => store.getters.searchWord);
     watch(searchWord, (value) => {
       searchSong(value);
     });
 
-    // 搜索音乐
+ 
     async function searchSong(value) {
       if (!value) {
         currentSongList.value = [];
