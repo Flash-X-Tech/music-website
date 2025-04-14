@@ -29,7 +29,7 @@ export default defineComponent({
       const result = (await HttpManager.getSongListOfLikeTitle(value)) as ResponseBody;
       if (!result.data.length) {
         (proxy as any).$message({
-          message: "暂无该歌曲内容",
+          message: "No content for this song yet",
           type: "warning",
         });
       } else {
