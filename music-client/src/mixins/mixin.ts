@@ -19,26 +19,26 @@ export default function () {
     if (sex === 0) {
       return "女";
     } else if (sex === 1) {
-      return "男";
+      return "male";
     }
   }
 
-  // 获取歌曲名
+
   function getSongTitle(str) {
     return str.split("-")[1];
   }
 
-  // 获取歌手名
+ 
   function getSingerName(str) {
     return str.split("-")[0];
   }
 
-  // 判断登录状态
+ 
   function checkStatus(status?: boolean) {
     if (!token.value) {
       if (status !== false)
         (proxy as any).$message({
-          message: "请先登录",
+          message: "Please log in first",
           type: "warning",
         });
       return false;
@@ -46,7 +46,6 @@ export default function () {
     return true;
   }
 
-  // 播放
   function playMusic({ id, url, pic, index, name, lyric, currentSongList }) {
     const songTitle = getSongTitle(name);
     const singerName = getSingerName(name);
@@ -67,14 +66,14 @@ export default function () {
     return parts[parts.length - 1];
   }
 
-  // 下载
+
   async function downloadMusic({ songUrl, songName }) {
     if (!songUrl) {
       (proxy as any).$message({
-        message: "下载链接为空！",
+        message: "Download link is empty! ",
         type: "error",
       });
-      console.error("下载链接为空！");
+      console.error("Download link is empty! ");
       return;
     }
     const fileName = getFileName(songUrl);
@@ -85,40 +84,38 @@ export default function () {
     // const eleLink = document.createElement("a");
     // eleLink.download = `${fileName}`;
     // eleLink.style.display = "none";
-    // // 字符内容转变成 blob 地址
+    // 
     // const blob = new Blob([result.data]);
     // console.log(blob)
     // eleLink.href = URL.createObjectURL(blob);
-    // document.body.appendChild(eleLink); // 触发点击
+    // document.body.appendChild(eleLink);
     // eleLink.click();
-    // document.body.removeChild(eleLink); // 移除
+    // document.body.removeChild(eleLink); 
 
       const response = await axios.get(downUrl, {
-        responseType: 'blob', // 指定响应类型为二进制数据
+        responseType: 'blob', 
       });
       
-      // 创建一个Blob URL来下载文件
       const blob = new Blob([response.data], { type: 'application/octet-stream' });
       const url = window.URL.createObjectURL(blob);
 
-      // 创建一个隐藏的<a>标签来下载文件
+    
       const link = document.createElement('a');
       link.href = url;
       link.download = fileName;
       document.body.appendChild(link);
       link.click();
 
-      // 释放URL对象
+    
       window.URL.revokeObjectURL(url);
       document.body.removeChild(link);
 
   }
 
-  // 导航索引
   function changeIndex(value) {
     proxy.$store.commit("setActiveNavName", value);
   }
-  // 路由管理
+
   function routerManager(routerName: string | number, options: routerOptions) {
     switch (routerName) {
       case RouterName.Search:
