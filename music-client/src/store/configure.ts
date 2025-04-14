@@ -1,9 +1,9 @@
 export default {
   state: {
-    token: false, // 用户是否登录
-    showAside: false, // 是否显示侧边栏
-    searchWord: "", // 搜索关键词
-    activeNavName: "", // 导航栏名称
+    token: false, 
+    showAside: false, 
+    searchWord: "", 
+    activeNavName: "", 
   },
   getters: {
     token: (state) => state.token,
