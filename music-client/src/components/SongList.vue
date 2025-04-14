@@ -1,10 +1,10 @@
 <template>
   <div class="content">
     <el-table highlight-current-row :data="dataList" @row-click="handleClick">
-      <el-table-column prop="songName" label="歌曲" />
-      <el-table-column prop="singerName" label="歌手" />
-      <el-table-column prop="introduction" label="专辑" />
-      <el-table-column label="编辑" width="80" align="center">
+      <el-table-column prop="songName" label="Song" />
+      <el-table-column prop="singerName" label="Singer" />
+      <el-table-column prop="introduction" label="Album" />
+      <el-table-column label="edit" width="80" align="center">
         <template #default="scope">
           <el-dropdown>
             <el-icon @click="handleEdit(scope.row)"><MoreFilled /></el-icon>
@@ -17,8 +17,8 @@
                       songUrl: scope.row.url,
                       songName: scope.row.name,
                     })
-                  ">下载</el-dropdown-item>
-                <el-dropdown-item :icon="Delete" v-if="show" @click="deleteCollection({ id: scope.row.id })">删除</el-dropdown-item>
+                  ">download</el-dropdown-item>
+                <el-dropdown-item :icon="Delete" v-if="show" @click="deleteCollection({ id: scope.row.id })">delete</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
