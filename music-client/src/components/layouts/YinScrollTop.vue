@@ -53,7 +53,7 @@ export default defineComponent({
     visibility: hidden;
   }
   &:before {
-    content: "回到顶部";
+    content: "Back to top";
     position: absolute;
     font-weight: bold;
     font-size: small;
@@ -71,7 +71,7 @@ export default defineComponent({
   width: 10px;
   border: 1px solid $color-black;
   border-color: $color-black transparent transparent $color-black;
-  // 按钮中间的小三角翻转
+
   transform: rotate(45deg) translate(-5px, -5px);
 }
 </style>
