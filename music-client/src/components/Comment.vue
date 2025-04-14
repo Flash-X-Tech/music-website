@@ -1,11 +1,11 @@
 <template>
   <div class="comment">
     <h2 class="comment-title">
-      <span>评论</span>
-      <span class="comment-desc">共 {{ commentList.length }} 条评论</span>
+      <span>Comment</span>
+      <span class="comment-desc">common {{ commentList.length }} Comments</span>
     </h2>
-    <el-input class="comment-input" type="textarea" placeholder="期待您的精彩评论..." :rows="2" v-model="textarea" />
-    <el-button class="sub-btn" type="primary" @click="submitComment()">发表评论</el-button>
+    <el-input class="comment-input" type="textarea" placeholder="Looking for your wonderful comments..." :rows="2" v-model="textarea" />
+    <el-button class="sub-btn" type="primary" @click="submitComment()">Post a comment</el-button>
   </div>
   <ul class="popular">
     <li v-for="(item, index) in commentList" :key="index">
@@ -17,7 +17,7 @@
           <li class="content">{{ item.content }}</li>
         </ul>
       </div>
-      <!--这特么是直接拿到了评论的id-->
+      <!--This is a direct comment.id-->
       <div ref="up" class="comment-ctr" @click="setSupport(item.id, item.up, userId)">
         <div><yin-icon :icon="iconList.Support"></yin-icon> {{ item.up }}</div>
         <el-icon v-if="item.userId === userId" @click="deleteComment(item.id, index)"><delete /></el-icon>
@@ -45,13 +45,13 @@ const { checkStatus } = mixin();
 
 
 const props = defineProps({
-  playId: Number || String, // 歌曲ID 或 歌单ID
-  type: Number, // 歌单 1 / 歌曲 0
+  playId: Number || String, // songID or PlaylistID
+  type: Number, // Playlist 1 / song 0
 });
 
 const { playId, type } = toRefs(props);
-const textarea = ref(""); // 存放输入内容
-const commentList = ref([]); // 存放评论内容
+const textarea = ref(""); 
+const commentList = ref([]); 
 const iconList = reactive({
   Support: Icon.Support,
 });
@@ -67,23 +67,22 @@ onMounted(() => {
   getComment(playId.value);
 });
 
-// 获取所有评论
 async function getComment(id) {
   try {
     const result = (await HttpManager.getAllComment(type.value, id)) as ResponseBody;
     commentList.value = result.data;
     for (let index = 0; index < commentList.value.length; index++) {
-      // 获取评论用户的昵称和头像
+    
       const resultUser = (await HttpManager.getUserOfId(commentList.value[index].userId)) as ResponseBody;
       commentList.value[index].avator = resultUser.data[0].avator;
       commentList.value[index].username = resultUser.data[0].username;
     }
   } catch (error) {
-    console.error('[获取所有评论失败]===>', error);
+    console.error('[Failed to get all comments]===>', error);
   }
 }
 
-// 提交评论
+
 async function submitComment() {
   if (!checkStatus()) return;
 
@@ -112,7 +111,7 @@ async function submitComment() {
   }
 }
 
-// 删除评论
+
 async function deleteComment(id, index) {
   const result = (await HttpManager.deleteComment(id)) as ResponseBody;
   (proxy as any).$message({
@@ -123,14 +122,14 @@ async function deleteComment(id, index) {
   if (result.success) commentList.value.splice(index, 1);
 }
 
-// 点赞  还得再查一下
+
 async function setSupport(id, up, userId) {
   if (!checkStatus()) return;
 
   let result = null;
   let operatorR = null;
   const commentId = id;
-  //当然可以这么左 直接在判断的时候 进行点赞或者取消
+
   const r = (await HttpManager.testAlreadySupport({ commentId, userId })) as ResponseBody;
   (proxy as any).$message({
     message: r.message,
