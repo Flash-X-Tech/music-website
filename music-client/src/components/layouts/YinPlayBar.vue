@@ -3,15 +3,15 @@
     <div class="fold" :class="{ turn: toggle }">
       <yin-icon :icon="iconList.ZHEDIE" @click="toggle = !toggle"></yin-icon>
     </div>
-    <!--播放进度-->
+
     <el-slider class="progress" v-model="nowTime" @change="changeTime" size="small"></el-slider>
     <div class="control-box">
       <div class="info-box">
-        <!--歌曲图片-->
+
       <div @click="goPlayerPage">
          <el-image class="song-bar-img" fit="contain"/>
       </div>
-        <!--播放开始结束时间-->
+
         <div v-if="songId">
           <div class="song-info">{{ this.songTitle }} - {{ this.singerName }}</div>
           <div class="time-info">{{ startTime }} / {{ endTime }}</div>
@@ -19,13 +19,13 @@
       </div>
       <div class="song-ctr">
         <yin-icon class="yin-play-show" :icon="playStateList[playStateIndex]" @click="changePlayState"></yin-icon>
-        <!--上一首-->
+
         <yin-icon class="yin-play-show" :icon="iconList.SHANGYISHOU" @click="prev"></yin-icon>
-        <!--播放-->
+
         <yin-icon :icon="playBtnIcon" @click="togglePlay"></yin-icon>
         <!--下一首-->
         <yin-icon class="yin-play-show" :icon="iconList.XIAYISHOU" @click="next"></yin-icon>
-        <!--音量-->
+
         <el-dropdown class="yin-play-show" trigger="click">
           <yin-icon v-if="volume !== 0" :icon="iconList.YINLIANG"></yin-icon>
           <yin-icon v-else :icon="iconList.JINGYIN"></yin-icon>
@@ -38,7 +38,7 @@
         </el-dropdown>
       </div>
       <div class="song-ctr song-edit">
-        <!--收藏-->
+     
         <yin-icon
             class="yin-play-show"
             :class="{ active: isCollection }"
@@ -56,7 +56,7 @@
             })
           "
         ></yin-icon>
-        <!--歌曲列表-->
+
         <yin-icon :icon="iconList.LIEBIAO" @click="changeAside"></yin-icon>
       </div>
     </div>
@@ -107,7 +107,7 @@ export default defineComponent({
       if (!checkStatus()) return;
 
       const userId = userIdVO.value;
-      const type = '0'; //这里要看看 不能直接写死
+      const type = '0'; 
       const songId = songIdVO.value;
 
       const result = isCollection.value
@@ -139,7 +139,7 @@ export default defineComponent({
     return {
       startTime: "00:00",
       endTime: "00:00",
-      nowTime: 0, // 进度条的位置
+      nowTime: 0, 
       toggle: true,
       volume: 50,
       playState: Icon.XUNHUAN,
@@ -161,37 +161,37 @@ export default defineComponent({
   computed: {
     ...mapGetters([
       "userId",
-      "isPlay", // 播放状态
-      "playBtnIcon", // 播放状态的图标
-      "songId", // 音乐id
-      "songUrl", // 音乐地址
-      "songTitle", // 歌名
-      "singerName", // 歌手名
-      "songPic", // 歌曲图片
-      "curTime", // 当前音乐的播放位置
-      "duration", // 音乐时长
+      "isPlay", 
+      "playBtnIcon",
+      "songId",
+      "songUrl", 
+      "songTitle",
+      "singerName",
+      "songPic",
+      "curTime",
+      "duration", 
       "currentPlayList",
-      "currentPlayIndex", // 当前歌曲在歌曲列表的位置
-      "showAside", // 是否显示侧边栏
-      "autoNext", // 用于触发自动播放下一首
+      "currentPlayIndex", 
+      "showAside", 
+      "autoNext",
     ]),
   },
   watch: {
-    // 切换播放状态的图标
+  
     isPlay(value) {
       this.$store.commit("setPlayBtnIcon", value ? Icon.ZANTING : Icon.BOFANG);
     },
     volume() {
       this.$store.commit("setVolume", this.volume / 100);
     },
-    // 播放时间的开始和结束
+    
     curTime() {
       this.startTime = formatSeconds(this.curTime);
       this.endTime = formatSeconds(this.duration);
-      // 移动进度条
+   
       this.nowTime = (this.curTime / this.duration) * 100;
     },
-    // 自动播放下一首
+  
     autoNext() {
       this.next();
     },
@@ -200,7 +200,7 @@ export default defineComponent({
     changeAside() {
       this.$store.commit("setShowAside", !this.showAside);
     },
-    // 控制音乐播放 / 暂停
+   
     togglePlay() {
       this.$store.commit("setIsPlay", this.isPlay ? false : true);
     },
@@ -211,7 +211,7 @@ export default defineComponent({
       this.playStateIndex = this.playStateIndex >= this.playStateList.length - 1 ? 0 : ++this.playStateIndex;
       this.playState = this.playStateList[this.playStateIndex];
     },
-    // 上一首
+
     prev() {
       if (this.playState === Icon.LUANXU) {
         let playIndex = Math.floor(Math.random() * this.currentPlayList.length);
@@ -228,7 +228,7 @@ export default defineComponent({
         }
       }
     },
-    // 下一首
+
     next() {
       if (this.playState === Icon.LUANXU) {
         let playIndex = Math.floor(Math.random() * this.currentPlayList.length);
@@ -245,7 +245,7 @@ export default defineComponent({
         }
       }
     },
-    // 选中播放
+
     toPlay(url) {
       if (url && url !== this.songUrl) {
         const song = this.currentPlayList[this.currentPlayIndex];
