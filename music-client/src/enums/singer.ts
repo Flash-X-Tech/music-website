@@ -1,18 +1,18 @@
 export const singerStyle = [
   {
-    name: "全部歌手",
+    name: "All singers",
     type: "-1",
   },
   {
-    name: "男歌手",
+    name: "Male singer",
     type: "1",
   },
   {
-    name: "女歌手",
+    name: "Female singer",
     type: "0",
   },
   {
-    name: "组合歌手",
+    name: "Singer group",
     type: "2",
   },
 ];
