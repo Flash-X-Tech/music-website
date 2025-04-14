@@ -1,26 +1,26 @@
 export const SONGSTYLE = [
   {
-    name: "全部歌单",
+    name: "All Playlists",
     type: "One",
   },
   {
-    name: "华语",
+    name: "Hindi",
     type: "Two",
   },
   {
-    name: "粤语",
+    name: "Telgu",
     type: "Three",
   },
   {
-    name: "欧美",
+    name: "English",
     type: "Four",
   },
   {
-    name: "日韩",
+    name: "Bhojpuri",
     type: "Five",
   },
   {
-    name: "轻音乐",
+    name: "Light Music",
     type: "Six",
   },
   {
@@ -28,7 +28,7 @@ export const SONGSTYLE = [
     type: "Seven",
   },
   {
-    name: "乐器",
+    name: "Musical Instruments",
     type: "Eight",
   },
 ];
