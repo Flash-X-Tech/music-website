@@ -1,17 +1,17 @@
 import { RouterName } from "./router-name";
 
 export const enum NavName {
-  Home = "首页",
-  SongSheet = "歌单",
-  Singer = "歌手",
-  Personal = "个人主页",
-  Setting = "设置",
-  SignIn = "登录",
-  SignUp = "注册",
-  SignOut = "退出",
+  Home = "front page",
+  SongSheet = "Playlist",
+  Singer = "Singer",
+  Personal = "Personal Homepage",
+  Setting = "Setting",
+  SignIn = "Log in",
+  SignUp = "Sign up",
+  SignOut = "Sign out",
 }
 
-// 左侧导航栏
+
 export const HEADERNAVLIST = [
   {
     name: NavName.Home,
@@ -27,7 +27,7 @@ export const HEADERNAVLIST = [
   },
 ];
 
-// 右侧导航栏
+
 export const SIGNLIST = [
   {
     name: NavName.SignIn,
@@ -39,7 +39,7 @@ export const SIGNLIST = [
   },
 ];
 
-// 用户下拉菜单项
+
 export const MENULIST = [
   {
     name: NavName.Personal,
