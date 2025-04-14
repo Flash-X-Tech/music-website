@@ -5,12 +5,12 @@
       <h3 class="album-info">{{ songDetails.title }}</h3>
     </el-aside>
     <el-main class="album-main">
-      <h1>简介</h1>
+      <h1>Introduction</h1>
       <p>{{ songDetails.introduction }}</p>
-      <!--评分-->
+      
       <div class="album-score">
         <div>
-          <h3>歌单评分</h3>
+          <h3>Playlist Rating</h3>
           <el-rate v-model="rank" allow-half disabled></el-rate>
         </div>
         <span>{{ rank * 2 }}</span>
@@ -19,7 +19,7 @@
           <el-rate allow-half v-model="score" :disabled="disabledRank" @click="pushValue()"></el-rate>
         </div>
       </div>
-      <!--歌曲-->
+
       <song-list class="album-body" :songList="currentSongList"></song-list>
       <comment :playId="songListId" :type="1"></comment>
     </el-main>
@@ -44,29 +44,29 @@ export default defineComponent({
     const store = useStore();
     const { checkStatus } = mixin();
 
-    const currentSongList = ref([]); // 存放的音乐
-    const nowSongListId = ref(""); // 歌单 ID
+    const currentSongList = ref([]);
+    const nowSongListId = ref(""); 
     const nowScore = ref(0);
     const nowRank = ref(0);
     const disabledRank = ref(false);
-    const assistText = ref("评价");
-    // const evaluateList = ref(["很差", "较差", "还行", "推荐", "力推"]);
-    const songDetails = computed(() => store.getters.songDetails); // 单个歌单信息
+    const assistText = ref("evaluate");
+   
+    const songDetails = computed(() => store.getters.songDetails);
     const nowUserId = computed(() => store.getters.userId);
   
-    nowSongListId.value = songDetails.value.id; // 给歌单ID赋值
+    nowSongListId.value = songDetails.value.id; 
   
-    // 收集歌单里面的歌曲
+ 
     async function getSongId(id) {
       const result = (await HttpManager.getListSongOfSongId(id)) as ResponseBody;
-      // 获取歌单里的歌曲信息
+   
       for (const item of result.data) {
-        // 获取单里的歌曲
+      
         const resultSong = (await HttpManager.getSongOfId(item.songId)) as ResponseBody;
         currentSongList.value.push(resultSong.data[0]);
       }
     }
-    // 获取评分
+
     async function getRank(id) {
       const result = (await HttpManager.getRankOfSongListId(id)) as ResponseBody;
       nowRank.value = result.data / 2;
@@ -75,9 +75,9 @@ export default defineComponent({
       const result = (await HttpManager.getUserRank(userId, songListId)) as ResponseBody;
       nowScore.value = result.data / 2;
       disabledRank.value = true;
-      assistText.value = "已评价";
+      assistText.value = "Rated";
     }
-    // 提交评分
+
     async function pushValue() {
       if (disabledRank.value || !checkStatus()) return;
 
@@ -102,8 +102,8 @@ export default defineComponent({
     }
 
     getUserRank(nowUserId.value, nowSongListId.value);
-    getRank(nowSongListId.value); // 获取评分
-    getSongId(nowSongListId.value); // 获取歌单里面的歌曲ID
+    getRank(nowSongListId.value); 
+    getSongId(nowSongListId.value); 
 
     return {
       songDetails,
