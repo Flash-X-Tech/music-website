@@ -23,16 +23,15 @@ import { singerStyle } from "@/enums";
 import { HttpManager } from "@/api";
 
 // data
-const activeName = ref("全部歌手");
-const pageSize = ref(15); // 页数
-const currentPage = ref(1); // 当前页
+const activeName = ref("All singers");
+const pageSize = ref(15);
+const currentPage = ref(1); 
 const allPlayList = ref([]);
 // computed
 const data = computed(() => {
   return allPlayList.value.slice((currentPage.value - 1) * pageSize.value, currentPage.value * pageSize.value);
 });
 
-// 获取所有歌手
 async function getAllSinger() {
   const result = (await HttpManager.getAllSinger()) as ResponseBody;
   currentPage.value = 1;
@@ -41,7 +40,6 @@ async function getAllSinger() {
 
 getAllSinger();
 
-// 获取当前页
 function handleCurrentChange(val) {
   currentPage.value = val;
 }
@@ -49,14 +47,14 @@ function handleCurrentChange(val) {
 function handleChangeView(item) {
   activeName.value = item.name;
   allPlayList.value = [];
-  if (item.name === "全部歌手") {
+  if (item.name === "All singers") {
     getAllSinger();
   } else {
     getSingerSex(item.type);
   }
 }
 
-// 通过性别对歌手分类
+
 async function getSingerSex(sex) {
   const result = (await HttpManager.getSingerOfSex(sex)) as ResponseBody;
   currentPage.value = 1;
