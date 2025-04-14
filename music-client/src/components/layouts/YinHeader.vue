@@ -1,16 +1,16 @@
 <template>
   <div class="yin-header">
-    <!--图标-->
+
     <div class="header-logo" @click="goPage()">
       <yin-icon :icon="iconList.ERJI"></yin-icon>
       <span>{{ musicName }}</span>
     </div>
     <yin-header-nav class="yin-header-nav" :styleList="headerNavList" :activeName="activeNavName" @click="goPage"></yin-header-nav>
-    <!--搜索框-->
+
     <div class="header-search">
-      <el-input placeholder="搜索" :prefix-icon="Search" v-model="keywords" @keyup.enter="goSearch()" />
+      <el-input placeholder="Search" :prefix-icon="Search" v-model="keywords" @keyup.enter="goSearch()" />
     </div>
-    <!--设置-->
+
     <yin-header-nav v-if="!token" :styleList="signList" :activeName="activeNavName" @click="goPage"></yin-header-nav>
     <el-dropdown class="user-wrap" v-if="token" trigger="click">
       <el-image class="user" fit="contain" :src="attachImageUrl(userPic)" />
@@ -44,9 +44,9 @@ export default defineComponent({
     const { changeIndex, routerManager } = mixin();
 
     const musicName = ref(MUSICNAME);
-    const headerNavList = ref(HEADERNAVLIST); // 左侧导航栏
-    const signList = ref(SIGNLIST); // 右侧导航栏
-    const menuList = ref(MENULIST); // 用户下拉菜单项
+    const headerNavList = ref(HEADERNAVLIST);
+    const signList = ref(SIGNLIST); 
+    const menuList = ref(MENULIST); 
     const iconList = reactive({
       ERJI: Icon.ERJI,
     });
@@ -80,7 +80,7 @@ export default defineComponent({
         routerManager(RouterName.Search, { path: RouterName.Search, query: { keywords: keywords.value } });
       } else {
         (proxy as any).$message({
-          message: "搜索内容不能为空",
+          message: "Search content cannot be empty",
           type: "error",
         });
       }
@@ -162,7 +162,7 @@ export default defineComponent({
   flex: 1;
 }
 
-/*搜索输入框*/
+
 .header-search {
   margin: 0 20px;
   width: 100%;
@@ -177,7 +177,7 @@ export default defineComponent({
   }
 }
 
-/*用户*/
+
 .user-wrap {
   position: relative;
   display: flex;
