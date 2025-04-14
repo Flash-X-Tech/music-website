@@ -2,27 +2,27 @@ import { Icon } from "@/enums";
 
 export default {
   state: {
-    /** 音乐信息 */
-    songId: "", // 音乐 ID
-    songTitle: "", // 歌名
-    songUrl: "", // 音乐 URL
-    songPic: `/img/songPic/tubiao.jpg`, // 歌曲图片
-    singerName: "", //  歌手名
-    lyric: [], // 处理后的歌词数据
 
-    /** 音乐播放信息 */
-    isPlay: false, // 播放状态
-    playBtnIcon: Icon.BOFANG, // 播放状态的图标
-    volume: 0, // 音量
-    duration: 0, // 音乐时长
-    curTime: 0, // 当前音乐的播放位置
-    changeTime: 0, // 指定播放时刻
-    autoNext: true, // 用于触发自动播放下一首
+    songId: "",
+    songTitle: "", 
+    songUrl: "", 
+    songPic: `/img/songPic/tubiao.jpg`,
+    singerName: "",
+    lyric: [],
 
-    /** 音乐列表信息 */
-    currentPlayList: [], // 当前播放列表
-    songDetails: null, // 单个歌单信息
-    currentPlayIndex: -1, // 当前歌曲在歌曲列表的位置
+
+    isPlay: false,
+    playBtnIcon: Icon.BOFANG, 
+    volume: 0,
+    duration: 0, 
+    curTime: 0,
+    changeTime: 0,
+    autoNext: true, 
+
+  
+    currentPlayList: [],
+    songDetails: null, 
+    currentPlayIndex: -1, 
   },
   getters: {
     songId: (state) => state.songId,
