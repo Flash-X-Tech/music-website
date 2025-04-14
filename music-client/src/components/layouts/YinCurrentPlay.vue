@@ -1,8 +1,8 @@
 <template>
   <transition name="aside-fade">
     <div class="yin-current-play" v-if="showAside">
-      <h2 class="title">当前播放</h2>
-      <div class="control">共 {{ (currentPlayList && currentPlayList.length) || 0 }} 首</div>
+      <h2 class="title">Currently Playing</h2>
+      <div class="control">Share {{ (currentPlayList && currentPlayList.length) || 0 }} Lyrics</div>
       <ul class="menus">
         <li
           v-for="(item, index) in currentPlayList"
@@ -35,9 +35,9 @@ export default defineComponent({
     const store = useStore();
     const { getSongTitle, playMusic } = mixin();
 
-    const songId = computed(() => store.getters.songId); // 音乐 ID
-    const currentPlayList = computed(() => store.getters.currentPlayList); // 当前播放
-    const showAside = computed(() => store.getters.showAside); // 是否显示侧边栏
+    const songId = computed(() => store.getters.songId);
+    const currentPlayList = computed(() => store.getters.currentPlayList); +
+    const showAside = computed(() => store.getters.showAside);+
 
     onMounted(() => {
       document.addEventListener('click', () => {
