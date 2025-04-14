@@ -1,8 +1,8 @@
 export default {
   state: {
-    userId: "", // ID
-    username: "", // 名字
-    userPic: "", // 图片
+    userId: "",
+    username: "", 
+    userPic: "",
   },
   getters: {
     userId: (state) => state.userId,
