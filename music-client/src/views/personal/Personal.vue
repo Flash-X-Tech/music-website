@@ -8,12 +8,12 @@
         <div class="username">{{ personalInfo.username }}</div>
         <div class="introduction">{{ personalInfo.introduction }}</div>
       </div>
-      <el-button class="edit-info" round :icon="Edit" @click="goPage()">修改个人信息</el-button>
+      <el-button class="edit-info" round :icon="Edit" @click="goPage()">Modify personal information</el-button>
     </div>
     <div class="personal-body">
       <song-list :songList="collectSongList" :show="true" @changeData="changeData"></song-list>
     </div>
-    <el-dialog v-model="dialogTableVisible" title="修改头像">
+    <el-dialog v-model="dialogTableVisible" title="Modify profile picture">
       <upload></upload>
     </el-dialog>
   </div>
@@ -40,7 +40,7 @@ export default defineComponent({
     const { routerManager } = mixin();
 
     const dialogTableVisible = ref(false);
-    const collectSongList = ref([]); // 收藏的歌曲
+    const collectSongList = ref([]);
     const personalInfo = reactive({
       username: "",
       userSex: "",
@@ -65,15 +65,15 @@ export default defineComponent({
       personalInfo.introduction = result.data[0].introduction;
       personalInfo.location = result.data[0].location;
     }
-    // 获取收藏的歌曲
+
     async function getCollection(userId) {
       collectSongList.value = []
       const result = (await HttpManager.getCollectionOfUser(userId)) as ResponseBody;
-      const collectIDList = result.data || []; // 存放收藏的歌曲ID
-      // 通过歌曲ID获取歌曲信息
+      const collectIDList = result.data || []; 
+    
       for (const item of collectIDList) {
         if (!item.songId) {
-          console.error(`歌曲${item}异常`);
+          console.error(`song${item}unusual`);
           continue;
         }
 
