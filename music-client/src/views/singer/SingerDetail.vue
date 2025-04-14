@@ -3,11 +3,11 @@
     <el-aside class="album-slide">
       <el-image class="singer-img" fit="contain" :src="attachImageUrl(songDetails.pic)" />
       <div class="album-info">
-        <h2>基本资料</h2>
+        <h2>Basic Information</h2>
         <ul>
-          <li v-if="songDetails.sex !== 2">性别：{{ getUserSex(songDetails.sex) }}</li>
-          <li>生日：{{ getBirth(songDetails.birth) }}</li>
-          <li>故乡：{{ songDetails.location }}</li>
+          <li v-if="songDetails.sex !== 2">gender：{{ getUserSex(songDetails.sex) }}</li>
+          <li>Birthday：{{ getBirth(songDetails.birth) }}</li>
+          <li>home：{{ songDetails.location }}</li>
         </ul>
       </div>
     </el-aside>
