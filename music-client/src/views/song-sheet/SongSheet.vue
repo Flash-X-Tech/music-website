@@ -28,19 +28,19 @@ export default defineComponent({
     PlayList,
   },
   setup() {
-    const activeName = ref("全部歌单");
-    const pageSize = ref(15); // 页数
-    const currentPage = ref(1); // 当前页
-    const songStyle = ref(SONGSTYLE); // 歌单导航栏类别
-    const allPlayList = ref([]); // 歌单
+    const activeName = ref("All Playlists");
+    const pageSize = ref(15); 
+    const currentPage = ref(1); 
+    const songStyle = ref(SONGSTYLE); 
+    const allPlayList = ref([]); 
     const data = computed(() => allPlayList.value.slice((currentPage.value - 1) * pageSize.value, currentPage.value * pageSize.value));
 
-    // 获取全部歌单
+   
     async function getSongList() {
       allPlayList.value = ((await HttpManager.getSongList()) as ResponseBody).data;
       currentPage.value = 1;
     }
-    // 通过类别获取歌单
+ 
     async function getSongListOfStyle(style) {
       allPlayList.value = ((await HttpManager.getSongListOfStyle(style)) as ResponseBody).data;
       currentPage.value = 1;
@@ -52,7 +52,7 @@ export default defineComponent({
       console.error(error);
     }
 
-    // 获取歌单
+
     async function handleChangeView(item) {
       activeName.value = item.name;
       allPlayList.value = [];
@@ -66,7 +66,7 @@ export default defineComponent({
         console.error(error);
       }
     }
-    // 获取当前页
+
     function handleCurrentChange(val) {
       currentPage.value = val;
     }
