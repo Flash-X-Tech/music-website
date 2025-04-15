@@ -10,19 +10,19 @@
     >
       <el-menu-item index="info">
         <el-icon><pie-chart /></el-icon>
-        <span>系统首页</span>
+        <span>Home</span>
       </el-menu-item>
       <el-menu-item index="consumer">
         <el-icon><User /></el-icon>
-        <span>用户管理</span>
+        <span>User Management</span>
       </el-menu-item>
       <el-menu-item index="singer">
         <el-icon><mic /></el-icon>
-        <span>歌手管理</span>
+        <span>Singer Management</span>
       </el-menu-item>
       <el-menu-item index="songList">
         <el-icon><Document /></el-icon>
-        <span>歌单管理</span>
+        <span>Playlist Management</span>
       </el-menu-item>
     </el-menu>
   </div>
