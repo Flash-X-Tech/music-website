@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- 删除提示框 -->
+
     <el-dialog title="提示" v-model="centerDialogVisible" width="300px" center>
-      <div class="del-dialog-cnt" align="center">删除不可恢复，是否确定删除？</div>
+      <div class="del-dialog-cnt" align="center">Are you sure you want to delete it? </div>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="cancelRow">取 消</el-button>
-          <el-button type="primary" @click="confirm">确 定</el-button>
+          <el-button @click="cancelRow">Cancel</el-button>
+          <el-button type="primary" @click="confirm">Sure</el-button>
         </span>
       </template>
     </el-dialog>
