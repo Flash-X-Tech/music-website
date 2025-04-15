@@ -17,7 +17,7 @@
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
+              <el-dropdown-item command="loginout">Log out</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -54,12 +54,11 @@ export default defineComponent({
       }
     });
 
-    // 侧边栏折叠
     function collapseChage() {
       collapse.value = !collapse.value;
       emitter.emit("collapse", collapse.value);
     }
-    // 用户名下拉菜单选择事件
+   
     function handleCommand(command) {
       if (command === "loginout") {
         routerManager(RouterName.SignIn, { path: RouterName.SignIn });
